@@ -5,24 +5,12 @@ import * as rssParser from 'react-native-rss-parser';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Header from "./src/header"
-import Footer from "./src/footer"
+import News from "./src/News"
 
-import {
-  AdMobBanner,
-  AdMobInterstitial,
-  PublisherBanner,
-  AdMobRewarded,
-  setTestDeviceIDAsync,
-} from 'expo-ads-admob';
-import { Buffer } from 'buffer'
-const GoogleNewsRss = require('google-news-rss');
 
-const googleNews = new GoogleNewsRss();
 
 async function e() {
-  console.log('--------->fdsgfsg')
-
-
+  
   fetch('https://news.google.com/rss/search?gl=US&hl=en-US&num=10&q=unicorns&ceid=US:en')
     .then((response) => response.text())
     .then((responseData) => rssParser.parse(responseData))
@@ -37,22 +25,49 @@ async function e() {
   });*/
 }
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
-const Tab = createMaterialBottomTabNavigator();
+import {  createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
     <NavigationContainer >
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Header} />
-        <Tab.Screen name="f" component={Footer} />
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Settings') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            } else if (route.name === 'Save') {
+              iconName = focused ? 'ios-alarm' : 'ios-alarm';
+            } else if (route.name === 'News') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            } else if (route.name === 'Categories') {
+              iconName = focused ? 'ios-analytics' : 'ios-analytics';
+            } else if (route.name === 'Options') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}>
+        <Tab.Screen name="Settings" component={Header} />
+        <Tab.Screen name="Save" component={News} />
+        <Tab.Screen name="News" component={News} />
+        <Tab.Screen name="Categories" component={News} />
+        <Tab.Screen name="Options" component={News} />
       </Tab.Navigator>
     </NavigationContainer >
   );
 }
 export default function App() {
-  //e()
   return (
     <View style={{ flex: 1 }}>
       <Header />

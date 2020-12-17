@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
   View,
   StyleSheet,
@@ -8,15 +7,12 @@ import {
   Text
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-const img =
-  'https://images.fineartamerica.com/images-medium-large-5/freedom-abstract-art-jaison-cianelli.jpg';
 
 export default function Header() {
-  console.log("header")
   return (
     <View style={styles.container}>
       <StatusBar style="dark" backgroundColor="black" />
-      <ImageBackground style={styles.image} source={{ uri: img }}>
+      <ImageBackground style={styles.image} >
         <Text style={styles.text}> </Text>
       </ImageBackground>
     </View>
@@ -31,7 +27,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 100,
     resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "grey"
   },
   text: {
     width: '100%',

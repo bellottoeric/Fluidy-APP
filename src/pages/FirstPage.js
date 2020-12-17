@@ -12,7 +12,7 @@ function HomeScreen({ navigation, itemId }) {
   console.log("TESS")
 
   return (
-    <View style={{ zIndex: 9999, position: "absolute", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ zIndex: 9999, position: "relative", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
         title="Go to Profile"
         onPress={() => navigation.navigate('Profile', {
@@ -32,21 +32,6 @@ function ProfileScreen({ route, navigation }) {
 
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
-  );
-}
-
-
-
-function MyStack() {
-  console.log("stak")
-  return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-      </Stack.Navigator>
-
-    </NavigationContainer >
   );
 }
 
