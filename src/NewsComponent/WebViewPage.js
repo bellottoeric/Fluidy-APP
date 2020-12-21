@@ -1,16 +1,12 @@
-// React Native Tab - Example using React Navigation V5 //
-// https://aboutreact.com/react-native-tab //
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { TouchableOpacity, StyleSheet, View, Text, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { WebView } from 'react-native-webview';
 
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation, itemId }) {
-  console.log("TESS")
-
   return (
     <View style={{ zIndex: 9999, position: "relative", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
@@ -25,25 +21,20 @@ function HomeScreen({ navigation, itemId }) {
 }
 
 function ProfileScreen({ route, navigation }) {
-  console.log(route)
-  // <WebView source={{ uri: 'https://expo.io' }} style={{ marginTop: 20 }} />;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
 }
 
-const FirstPage = ({ navigation, propName }) => {
-  console.log(propName)
+const WebViewPage = ({ navigation, propName }) => {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Navigator initialRouteName="WebViewPage">
+        <Stack.Screen name="WebViewPage" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
-
     </NavigationContainer >
   );
 }
@@ -57,4 +48,5 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 });
-export default FirstPage;
+
+export default WebViewPage;

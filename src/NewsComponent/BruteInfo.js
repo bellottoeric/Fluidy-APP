@@ -1,9 +1,7 @@
-// React Native Tab - Example using React Navigation V5 //
-// https://aboutreact.com/react-native-tab //
 import * as React from 'react';
 import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView } from 'react-native';
 
-const SecondPage = ({ navigation }) => {
+const BruteInfo = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 , padding: 16}}>
@@ -22,8 +20,7 @@ const SecondPage = ({ navigation }) => {
             Setting{'\n'}(You are on SecondPage)
           </Text>
           <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('FirstPage')}>
+            onPress={() => navigation.navigate('Home')}>
             <Text>Go to Home Tab</Text>
           </TouchableOpacity>
         </View>
@@ -39,13 +36,4 @@ const SecondPage = ({ navigation }) => {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    width: 300,
-    marginTop: 16,
-  },
-});
-export default SecondPage;
+export default BruteInfo;
