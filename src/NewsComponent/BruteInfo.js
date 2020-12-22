@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { TouchableOpacity, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { TouchableOpacity, View, Text, SafeAreaView } from 'react-native';
 
-const BruteInfo = ({ navigation }) => {
+const BruteInfo = ({ setInArticles }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 , padding: 16}}>
@@ -20,7 +20,7 @@ const BruteInfo = ({ navigation }) => {
             Setting{'\n'}(You are on SecondPage)
           </Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => setInArticles(true)}>
             <Text>Go to Home Tab</Text>
           </TouchableOpacity>
         </View>

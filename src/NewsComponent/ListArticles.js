@@ -1,15 +1,16 @@
-import * as React from 'react';
-import { FlatList, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, FlatList, View, Text } from 'react-native';
 import { ListItem } from 'react-native-elements'
-import ArticlesView from './ArticleView'
 
-export default function ListArticles() {
+export default function ListArticles({setInArticles}) {
     return (
         <View>
             <FlatList
                 data={[{ title: 'Title Text', key: 'item12' }, { title: 'Title Text', key: 'item11' }, { title: 'Title Text', key: 'item1' }, { title: 'Title Text', key: 'item2' }, { title: 'Title Text', key: 'item3' }]}
                 renderItem={({ item }) =>
-                    <ListItem>
+                    <ListItem onPress={() => {
+                        setInArticles(false)
+                    }}>
                         <ListItem.Content>
                             <ListItem.Title>
                                 {item.title}
@@ -21,3 +22,10 @@ export default function ListArticles() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 0,
+        flex: 1,
+    }
+});

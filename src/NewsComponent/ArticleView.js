@@ -1,17 +1,16 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import WebViewPage from './WebViewPage';
 import BruteInfo from './BruteInfo'; 
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-export default function ArticlesView() {
+export default function ArticlesView({setInArticles}) {
     const Tab = createMaterialTopTabNavigator();
 
     return ( 
         <Tab.Navigator
-            initialRouteName="Feed"
             tabBarOptions={{
                 activeTintColor: '#FFFFFF',
                 inactiveTintColor: '#F8F8F8',
@@ -22,9 +21,9 @@ export default function ArticlesView() {
         >
             <Tab.Screen
                 name="Website"
-                children={() => <WebViewPage propName={{ "e": "eee" }} />}
+                children={() => <WebViewPage propName={{ "e": "eee" }} setInArticles={setInArticles} />}
                 options={{
-                    tabBarLabel: 'WebViewPage',
+                    tabBarLabel: 'a changer 7852',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="WebViewPage" color={color} size={size} />
                     )
@@ -32,12 +31,12 @@ export default function ArticlesView() {
             />
             <Tab.Screen
                 name="SecondPagse"
-                component={BruteInfo}
+                children={() => <BruteInfo propName={{ "e": "eee" }} setInArticles={setInArticles} />}
                 options={{
                     tabBarLabel: 'a changer 7851',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="settings" color={color} size={size} />
-                    ),
+                    )
                 }}
             />
         </Tab.Navigator>

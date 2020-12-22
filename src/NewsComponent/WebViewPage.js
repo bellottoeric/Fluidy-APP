@@ -6,15 +6,14 @@ import { WebView } from 'react-native-webview';
 
 const Stack = createStackNavigator();
 
-function HomeScreen({ navigation, itemId }) {
+function HomeScreen({ setInArticles }) {
   return (
     <View style={{ zIndex: 9999, position: "relative", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
         title="Go to Profile"
-        onPress={() => navigation.navigate('Profile', {
-          itemId: 86,
-          otherParam: 'anything you want here'
-        })}
+        onPress={() =>{
+          setInArticles(true)
+        }}
       />
     </View>
   );
@@ -28,11 +27,11 @@ function ProfileScreen({ route, navigation }) {
   );
 }
 
-const WebViewPage = ({ navigation, propName }) => {
+const WebViewPage = ({ setInArticles }) => {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="WebViewPage">
-        <Stack.Screen name="WebViewPage" component={HomeScreen} />
+        <Stack.Screen name="WebViewPage" children={() => <HomeScreen setInArticles={setInArticles} />} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer >
