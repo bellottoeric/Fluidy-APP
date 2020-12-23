@@ -14,7 +14,7 @@ export default function CategorySlider({category}) {
                 renderItem={({ item }) =>
                     <ListItem onPress={() => {
                         refContainer.current.scrollToIndex({ animated: true, index: 0 })
-                    }}>
+                    }}> 
                         <ListItem.Content>
                             <ListItem.Title>
                                 {item.title}
