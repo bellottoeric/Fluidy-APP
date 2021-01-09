@@ -40,5 +40,5 @@ export default function ArticlesView({setInArticles}) {
                 }}
             />
         </Tab.Navigator>
-    );
+    )
 }

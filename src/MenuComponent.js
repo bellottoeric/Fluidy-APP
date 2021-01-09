@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import News from "./NewsComponent"
 import Categories from "./CategoriesComponent"
@@ -8,7 +8,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator();
 
 export default function Menu() {
-  
+  const [changeSlider, setChangeSlider] = useState(true)
+
   return (
     <NavigationContainer >
       <Tab.Navigator
@@ -37,11 +38,11 @@ export default function Menu() {
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}>
-        <Tab.Screen name="Settings" component={News} />
-        <Tab.Screen name="Save" component={News} />
-        <Tab.Screen name="News" component={News} />
-        <Tab.Screen name="Categories" component={Categories} />
-        <Tab.Screen name="Options" component={News} />
+        <Tab.Screen name="Settings" children={() => <News changeSlider={changeSlider} />} />
+        <Tab.Screen name="Save" children={() => <News changeSlider={changeSlider} />} />
+        <Tab.Screen name="News" children={() => <News changeSlider={changeSlider} />} />
+        <Tab.Screen name="Categories" children={() => <Categories setChangeSlider={setChangeSlider} />}/>
+        <Tab.Screen name="Options" children={() => <News changeSlider={changeSlider} />} />
       </Tab.Navigator>
     </NavigationContainer >
   );

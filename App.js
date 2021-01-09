@@ -31,8 +31,7 @@ export default function App() {
         <Text>A changer 472147</Text>
       </View>
     )
-  }
-  
+  }  
 }
 
 
