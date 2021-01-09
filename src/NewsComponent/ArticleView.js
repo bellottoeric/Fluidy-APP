@@ -6,7 +6,7 @@ import WebViewPage from './WebViewPage';
 import BruteInfo from './BruteInfo'; 
 
 
-export default function ArticlesView({setInArticles}) {
+export default function ArticlesView({}) {
     const Tab = createMaterialTopTabNavigator();
 
     return ( 
@@ -21,7 +21,7 @@ export default function ArticlesView({setInArticles}) {
         >
             <Tab.Screen
                 name="Website"
-                children={() => <WebViewPage propName={{ "e": "eee" }} setInArticles={setInArticles} />}
+                children={() => <WebViewPage propName={{ "e": "eee" }}/>}
                 options={{
                     tabBarLabel: 'a changer 7852',
                     tabBarIcon: ({ color, size }) => (
@@ -31,7 +31,7 @@ export default function ArticlesView({setInArticles}) {
             />
             <Tab.Screen
                 name="SecondPagse"
-                children={() => <BruteInfo propName={{ "e": "eee" }} setInArticles={setInArticles} />}
+                children={() => <BruteInfo propName={{ "e": "eee" }} />}
                 options={{
                     tabBarLabel: 'a changer 7851',
                     tabBarIcon: ({ color, size }) => (

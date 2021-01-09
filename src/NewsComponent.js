@@ -9,15 +9,15 @@ import ArticleView from './NewsComponent/ArticleView'
 // http://localhost:8444/v1/getArticles?lang=Spanish&category=Animales
 // http://localhost:8444/v1/categories
 
-export default function News({ changeSlider}) {
-    const [category, setCategory] = useState("sport")
-    const [inArticles, setInArticles] = useState(true) 
-    
+export default function News() {
+    const [category, setCategory] = useState("Soccer")
+    const [inArticles, setInArticles] = useState(false) 
+
     return (
         <View style={styles.container}>
-            <CategorySlider changeSlider={changeSlider}></CategorySlider>
-            {inArticles && <ListArticles setInArticles={setInArticles}></ListArticles>}
-            {!inArticles && <ArticleView setInArticles={setInArticles}></ArticleView>}
+            <CategorySlider setCategory={setCategory}></CategorySlider>
+            {!inArticles && <ListArticles setInArticles={setInArticles} category={category} ></ListArticles>}
+            {inArticles && <ArticleView setInArticles={setInArticles} ></ArticleView>}
         </View>
     );
 }

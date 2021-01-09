@@ -4,8 +4,8 @@ import { FlatList, View } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { ListItem } from 'react-native-elements'
 
-export default function CategorySlider() {
-    const [listCategories, setListCategories] = useState([{ title: 'Loading...', key: 'item12' }]);
+export default function CategorySlider({ setCategory }) {
+    const [listCategories, setListCategories] = useState([{ title: 'Loading...', key: '1' }]);
     const refContainer = useRef();
     const isFocused = useIsFocused();
 
@@ -33,7 +33,8 @@ export default function CategorySlider() {
                 data={listCategories}
                 renderItem={({ item }) =>
                     <ListItem onPress={() => {
-                        refContainer.current.scrollToIndex({ animated: true, index: 0 })
+                        setCategory(item.title)
+                        //refContainer.current.scrollToIndex({ animated: true, index: 0 })
                     }}>
                         <ListItem.Content>
                             <ListItem.Title>

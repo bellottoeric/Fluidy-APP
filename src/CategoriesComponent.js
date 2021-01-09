@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, SafeAreaView, ScrollView, View, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Updates from 'expo-updates';
 import { ListItem, CheckBox, Divider } from 'react-native-elements'
 
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function managePreference(value, isSelected) {
     const array = await AsyncStorage.getItem('preference')
+    //await sleep(1000) 
     if (!isSelected) {
         if (array) {
             var index = array.indexOf(value)
@@ -50,28 +56,27 @@ async function checkBoxStatus(value, setSelection) {
     }))
 }
 
-function CheckBoxComponent({ value, setChangeSlider }) {
-    const [isSelected, setSelection] = useState(false);
+function CheckBoxComponent({ value, setChangeSlider, indexKey }) {
+    const [isSelected, setSelection] = useState(false)
     checkBoxStatus(value, setSelection)
 
     return (
-        <ListItem.Content>
-            <ListItem.Title onPress={async () => {
-                setSelection(!isSelected)
-                managePreference(value, isSelected)
-                setChangeSlider(value)
-            }}>
-                <CheckBox
-                    checked={isSelected}
-                    onPress={async () => {
-                        setSelection(!isSelected)
-                        managePreference(value, isSelected)
-                        setChangeSlider(value)
-                    }}
-                />
-                <Text style={styles.textSubcategory}>{value}</Text>
-            </ListItem.Title>
-        </ListItem.Content>
+        <TouchableOpacity onPress={async () => {
+            setSelection(!isSelected)
+            managePreference(value, isSelected, setChangeSlider)
+        }}>
+            <ListItem key={indexKey} >
+                <ListItem.Content>
+                    <ListItem.Title>
+                        <CheckBox
+                            disabled={true}
+                            checked={isSelected}
+                        />
+                        <Text style={styles.textSubcategory}>{value}</Text>
+                    </ListItem.Title>
+                </ListItem.Content>
+            </ListItem>
+        </TouchableOpacity>
     )
 }
 
@@ -83,9 +88,9 @@ export default function Categories({ setChangeSlider }) {
             var res = []
             var value = await AsyncStorage.getItem('categories')
             if (value !== null) {
-                value = JSON.parse( JSON.parse(value))
-                for (var i in value) {
-                    res.push({"Title": i, "content": value[i]})
+                value = JSON.parse(JSON.parse(value))
+                for (var i of value) {
+                    res.push({"Title": i.lang, "content": i.categories})
                 } 
                 setCategories(res)
             } else {
@@ -95,7 +100,7 @@ export default function Categories({ setChangeSlider }) {
         }
         checkCategories();
     }, []);
-
+ 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -104,9 +109,7 @@ export default function Categories({ setChangeSlider }) {
                     <View key={index}>
                         <Text style={styles.titleCategory}>{item.Title}</Text>
                         {item.content.map((value, indexKey) => (
-                            <ListItem key={indexKey} >
-                                <CheckBoxComponent value={value} setChangeSlider={setChangeSlider}/>
-                            </ListItem>
+                            <CheckBoxComponent key={indexKey} value={value} setChangeSlider={setChangeSlider} />
                         ))}
                         <View
                             style={{

@@ -1,4 +1,3 @@
-import * as rssParser from 'react-native-rss-parser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function getCategories({setReady}) {
@@ -20,11 +19,3 @@ export default function getCategories({setReady}) {
         }
     }))
 }
-
-/* fetch('https://news.google.com/rss/search?gl=US&hl=en-US&num=10&q=unicorns&ceid=US:en')
-        .then((response) => response.text())
-        .then((responseData) => rssParser.parse(responseData))
-        .then((rss) => {
-            console.log(rss.title);
-            console.log(rss.items.length);
-        }); */
